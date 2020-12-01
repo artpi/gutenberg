@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Breaking Changes
+
+-   The bundled `@wordpress/eslint-plugin` dependency has been updated to the next major version `^8.0.0`. There are new ESLint rules enabled in the recommended config used by `lint-js` command.
+
 ## 12.6.0 (2020-12-17)
 
 ### Enhancements
@@ -13,6 +17,7 @@
 ### Internal
 
 -   The bundled `ignore-emit-webpack-plugin` dependency has been updated from requiring `2.0.3` to requiring `^2.0.6`.
+-   The bundled `webpack-bundle-analyzer` dependency has been updated from requiring `^3.6.1` to requiring `^4.2.0`.
 
 ## 12.5.0 (2020-10-30)
 
