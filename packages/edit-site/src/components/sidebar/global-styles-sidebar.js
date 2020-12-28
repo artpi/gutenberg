@@ -6,7 +6,12 @@ import { map, sortBy } from 'lodash';
 /**
  * WordPress dependencies
  */
-import { Button, PanelBody, TabPanel } from '@wordpress/components';
+import {
+	Button,
+	PanelBody,
+	TabPanel,
+	__unstableComponentSystemProvider as ComponentSystemProvider,
+} from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { getBlockType } from '@wordpress/blocks';
 import { useMemo } from '@wordpress/element';
@@ -42,7 +47,9 @@ function GlobalStylesPanel( {
 	}
 
 	const content = (
-		<>
+		<ComponentSystemProvider
+			__unstableNextInclude={ [ 'WPComponentsFontSizePicker' ] }
+		>
 			{ hasTypographyPanel && (
 				<TypographyPanel
 					context={ context }
@@ -59,7 +66,7 @@ function GlobalStylesPanel( {
 					setSetting={ setSetting }
 				/>
 			) }
-		</>
+		</ComponentSystemProvider>
 	);
 	if ( ! wrapperPanelTitle ) {
 		return content;

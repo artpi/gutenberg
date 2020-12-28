@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
-import { useCallback } from '@wordpress/element';
+
 /**
  * External dependencies
  */
@@ -21,6 +21,10 @@ import {
  * Internal dependencies
  */
 import { getSelectTemplateColumns } from './font-size-control-utils';
+
+function renderItem( { name, style } ) {
+	return <span style={ style }>{ name }</span>;
+}
 
 function FontSizeControlSelect( props, forwardedRef ) {
 	const {
@@ -45,11 +49,6 @@ function FontSizeControlSelect( props, forwardedRef ) {
 	const templateColumns = getSelectTemplateColumns( withNumberInput );
 	const subControlsTemplateColumns = withNumberInput ? '1fr 1fr' : '1fr';
 
-	const renderItem = useCallback(
-		( { name, style } ) => <span style={ style }>{ name }</span>,
-		[]
-	);
-
 	return (
 		<Grid alignment="bottom" templateColumns={ templateColumns }>
 			{ withSelect && (
@@ -59,8 +58,8 @@ function FontSizeControlSelect( props, forwardedRef ) {
 						max={ 260 }
 						onChange={ onChange }
 						options={ options }
-						ref={ forwardedRef }
 						renderItem={ renderItem }
+						ref={ forwardedRef }
 						size={ size }
 						value={ value }
 						{ ...otherProps }

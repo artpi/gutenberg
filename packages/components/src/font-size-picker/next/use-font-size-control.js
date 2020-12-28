@@ -8,7 +8,7 @@ import { createUnitValue, is, noop } from '@wp-g2/utils';
 /**
  * WordPress dependencies
  */
-import { useCallback } from '@wordpress/element';
+import { useCallback, useMemo } from '@wordpress/element';
 
 /**
  * Internal dependencies
@@ -20,6 +20,7 @@ import {
 	getSelectValueFromFontSize,
 	hasUnit,
 	isCustomSelectedItem,
+	isCustomValue,
 } from './font-size-control-utils';
 
 export function useFontSizeControl( props ) {
@@ -35,11 +36,17 @@ export function useFontSizeControl( props ) {
 
 	const hasUnits = hasUnit( value || fontSizes[ 0 ]?.size );
 
-	const options = getSelectOptions( {
-		options: fontSizes,
-		disableCustomFontSizes,
-		value,
-	} );
+	const hasCustomValue = isCustomValue( fontSizes, value );
+
+	const options = useMemo(
+		() =>
+			getSelectOptions( {
+				options: fontSizes,
+				disableCustomFontSizes,
+				hasCustomValue,
+			} ),
+		[ fontSizes, disableCustomFontSizes, hasCustomValue ]
+	);
 
 	const handleOnReset = useCallback( () => {
 		onChange( undefined );
