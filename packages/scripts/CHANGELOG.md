@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Breaking Changes
+
+-   Increase the minimum Node.js version to 12.
+
 ## 12.6.0 (2020-12-17)
 
 ### Enhancements
